@@ -75,12 +75,11 @@ class Menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Menu_model', 'layanan');
 
-        
+
         $data['layanan'] = $this->Menu_model->get_layanan()->result_array();
 
         $this->form_validation->set_rules('nip', 'Title', 'required');
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('slug', 'Slug', 'required');
         $this->form_validation->set_rules('satker', 'Satker', 'required');
         $this->form_validation->set_rules('instansi', 'Instansi', 'required');
         $this->form_validation->set_rules('kepentingan', 'Kepentingan', 'required');
@@ -98,7 +97,6 @@ class Menu extends CI_Controller
             $data = [
                 'nip' => $this->input->post('nip'),
                 'nama' => $this->input->post('nama'),
-                'slug' => $this->input->post('slug'),
                 'satker' => $this->input->post('satker'),
                 'instansi' => $this->input->post('instansi'),
                 'kepentingan' => $this->input->post('kepentingan'),
@@ -137,11 +135,10 @@ class Menu extends CI_Controller
         $data['data'] = $this->db->get('layanan')->result_array();
 
         $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('menu/data', $data);
-            $this->load->view('templates/footer');
-
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/data', $data);
+        $this->load->view('templates/footer');
     }
 
     //ubah
@@ -149,7 +146,7 @@ class Menu extends CI_Controller
     {
         $data['title'] = 'Data';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['data'] = $this->Menu_model->getLayananById($id);  
+        $data['data'] = $this->Menu_model->getLayananById($id);
 
         $this->form_validation->set_rules('nip', 'nip', 'required');
         $this->form_validation->set_rules('nama', 'nama', 'required');
@@ -165,23 +162,20 @@ class Menu extends CI_Controller
             $this->session->set_flashdata('flash', 'Diubah');
             redirect('menu/data');
         }
-
     }
     //detail
     public function detail_data($id)
     {
         $data['title'] = 'Data';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['data'] = $this->Menu_model->getLayananById($id);  
+        $data['data'] = $this->Menu_model->getLayananById($id);
 
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('menu/data_detail', $data);
-            $this->load->view('templates/footer');
-        
-
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/data_detail', $data);
+        $this->load->view('templates/footer');
     }
     //hapus 
 
@@ -191,7 +185,7 @@ class Menu extends CI_Controller
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('menu/data');
     }
-    
+
 
     //display
 
@@ -236,10 +230,10 @@ class Menu extends CI_Controller
         //$data['data'] = $this->db->get('layanan')->result_array();
 
         $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('menu/counter', $data);
-            $this->load->view('templates/footer');
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/counter', $data);
+        $this->load->view('templates/footer');
     }
 
     public function counter_a()
@@ -253,11 +247,57 @@ class Menu extends CI_Controller
         //$data['data'] = $this->db->get('layanan')->result_array();
 
         $this->load->view('templates/header', $data);
-            //$this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('menu/counter-A', $data);
-            $this->load->view('templates/footer');
+        //$this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/counter-A', $data);
+        $this->load->view('templates/footer');
     }
+    public function counter_b()
+    {
+        $data['title'] = 'Counter-B';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->model('Menu_model', 'counter');
 
-    
+        $data['counter'] = $this->Menu_model->get_counter_a()->result_array();
+        //$data['subMenu'] = $this->menu->getSubMenu();
+        //$data['data'] = $this->db->get('layanan')->result_array();
+
+        $this->load->view('templates/header', $data);
+        //$this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/counter-A', $data);
+        $this->load->view('templates/footer');
+    }
+    public function counter_c()
+    {
+        $data['title'] = 'Counter-C';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->model('Menu_model', 'counter');
+
+        $data['counter'] = $this->Menu_model->get_counter_a()->result_array();
+        //$data['subMenu'] = $this->menu->getSubMenu();
+        //$data['data'] = $this->db->get('layanan')->result_array();
+
+        $this->load->view('templates/header', $data);
+        //$this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/counter-A', $data);
+        $this->load->view('templates/footer');
+    }
+    public function counter_d()
+    {
+        $data['title'] = 'Counter-D';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->model('Menu_model', 'counter');
+
+        $data['counter'] = $this->Menu_model->get_counter_a()->result_array();
+        //$data['subMenu'] = $this->menu->getSubMenu();
+        //$data['data'] = $this->db->get('layanan')->result_array();
+
+        $this->load->view('templates/header', $data);
+        //$this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/counter-A', $data);
+        $this->load->view('templates/footer');
+    }
 }

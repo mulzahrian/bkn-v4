@@ -9,9 +9,9 @@
     <div class="row">
         <div class="col-lg">
             <?php if (validation_errors()) : ?>
-            <div class="alert alert-danger" role="alert">
-                <?= validation_errors(); ?>
-            </div>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
             <?php endif; ?>
 
             <?= $this->session->flashdata('message'); ?>
@@ -21,8 +21,8 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">no</th>
-                        <th scope="col">Nip</th>
+                        <th scope="col">No</th>
+                        <th scope="col">NIP</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Instansi</th>
                         <th scope="col">Layanan</th>
@@ -32,19 +32,19 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($data as $sm) : ?>
-                    <tr>
-                        <th scope="row"><?= $i; ?></th>
-                        <td><?= $sm['nip']; ?></td>
-                        <td><?= $sm['nama']; ?></td>
-                        <td><?= $sm['instansi']; ?></td>
-                        <td><?= $sm['layanan']; ?></td>
-                        <td>
-                            <a href="<?= base_url(); ?>menu/ubah/<?= $sm['id']; ?>"class="btn btn-warning btn-sm float-center"><i class=" fas fa-pen"></i></a>
-                            <a href="<?= base_url(); ?>menu/hapus/<?= $sm['id']; ?>"class="btn btn-danger btn-sm float-center tombol-hapus"><i class="fas fa-trash-alt"></i></a>
-                            <a href="<?= base_url(); ?>menu/detail_data/<?= $sm['id']; ?>"class="btn btn-success btn-sm float-center"><i class="fas fa-key"></i></a>
-                        </td>
-                    </tr>
-                    <?php $i++; ?>
+                        <tr>
+                            <th scope="row"><?= $i; ?></th>
+                            <td><?= $sm['nip']; ?></td>
+                            <td><?= $sm['nama']; ?></td>
+                            <td><?= $sm['instansi']; ?></td>
+                            <td><?= $sm['layanan']; ?></td>
+                            <td>
+                                <a href="<?= base_url(); ?>menu/ubah/<?= $sm['id']; ?>" class="btn btn-warning btn-sm float-center"><i class=" fas fa-pen"></i></a>
+                                <a href="<?= base_url(); ?>menu/hapus/<?= $sm['id']; ?>" class="btn btn-danger btn-sm float-center tombol-hapus"><i class="fas fa-trash-alt"></i></a>
+                                <a href="<?= base_url(); ?>menu/detail_data/<?= $sm['id']; ?>" class="btn btn-success btn-sm float-center"><i class="fas fa-key"></i></a>
+                            </td>
+                        </tr>
+                        <?php $i++; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -76,38 +76,50 @@
             <form action="<?= base_url('menu/layanan'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nip" name="nip" placeholder="Submenu nip">
+                        <label>NIP</label>
+                        <input type="text" class="form-control" id="nip" name="nip" placeholder="">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="nama">
+                        <label>Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="slug" name="slug" placeholder="slug">
+                        <label>Satuan Kerja</label>
+                        <input type="text" class="form-control" id="satker" name="satker" placeholder="">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="satker" name="satker" placeholder="satker">
+                        <label>Instansi</label>
+                        <input type="text" class="form-control" id="instansi" name="instansi" placeholder="">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="instansi" name="instansi" placeholder="instansi">
+                        <label>Kepentingan</label>
+                        <input type="text" class="form-control" id="kepentingan" name="kepentingan" placeholder="">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="kepentingan" name="kepentingan" placeholder="kepentingan">
+                        <label>No.HP</label>
+                        <input type="text" class="form-control" id="nohp" name="nohp" placeholder="">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nohp" name="nohp" placeholder="No Hp">
+                        <label>Layanan</label>
+                        <select class="form-control" name="layanan" id="layanan" placeholder="">
+                            <option selected>Choose...</option>
+                            <option value="Informasi Kepegawaian">Informasi Kepegawaian</option>
+                            <option value="Mutasi dan Status Kepegawaian">Mutasi dan Status Kepegawaian</option>
+                            <option value="Pengangkatan dan Pensiun">Pengangkatan dan Pensiun</option>
+                            <option value="Pengembangan dan Supervisi Kepegawaian">Pengembangan dan Supervisi Kepegawaian</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="layanan" name="layanan" placeholder="layanan">
-                    </div>
-                    <div class="form-group">
-                    <label>Counter</label>
-                        <select class="form-control" name="counter" id="counter" placeholder=" Counter">
+                        <label>Counter</label>
+                        <select class="form-control" name="counter" id="counter" placeholder="">
+                            <option selected>Choose...</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
+                            <option value="D">D</option>
                         </select>
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -116,4 +128,4 @@
             </form>
         </div>
     </div>
-</div> 
+</div>

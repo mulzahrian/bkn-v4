@@ -20,11 +20,10 @@ class Data extends CI_Controller
         $data['data'] = $this->db->get('layanan')->result_array();
 
         $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('data/index', $data);
-            $this->load->view('templates/footer');
-
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('data/index', $data);
+        $this->load->view('templates/footer');
     }
 
     //ubah
@@ -32,7 +31,7 @@ class Data extends CI_Controller
     {
         $data['title'] = 'Data';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['data'] = $this->Menu_model->getLayananById($id);  
+        $data['data'] = $this->Menu_model->getLayananById($id);
 
         $this->form_validation->set_rules('nip', 'nip', 'required');
         $this->form_validation->set_rules('nama', 'nama', 'required');
@@ -48,7 +47,6 @@ class Data extends CI_Controller
             $this->session->set_flashdata('flash', 'Diubah');
             redirect('menu/data');
         }
-
     }
     //detail
     public function detail_data()
@@ -61,11 +59,10 @@ class Data extends CI_Controller
         $data['data'] = $this->db->get('layanan')->result_array();
 
         $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('menu/data', $data);
-            $this->load->view('templates/footer');
-
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/data', $data);
+        $this->load->view('templates/footer');
     }
     //hapus 
     public function hapus_data()
@@ -78,12 +75,9 @@ class Data extends CI_Controller
         $data['data'] = $this->db->get('layanan')->result_array();
 
         $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('menu/data', $data);
-            $this->load->view('templates/footer');
-
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/data', $data);
+        $this->load->view('templates/footer');
     }
-
-    
 }

@@ -5,14 +5,14 @@
 
             <div class="card">
                 <div class="card-header">
-                    detail Data
+                    Data Pelayanan
                 </div>
                 <div class="card-body">
                     <form action="" method="post">
                         <input type="hidden" name="id" value="<?= $data['id']; ?>">
 
                         <div class="form-group">
-                            <label for="nip">Nip</label>
+                            <label for="nip">NIP</label>
                             <input type="text" name="nip" class="form-control" id="nip" value="<?= $data['nip']; ?>">
                         </div>
                         <div class="form-group">
@@ -20,11 +20,7 @@
                             <input type="text" name="nama" class="form-control" id="nama" value="<?= $data['nama']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="slug">Slug</label>
-                            <input type="text" name="slug" class="form-control" id="slug" value="<?= $data['slug']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="satker">Satker</label>
+                            <label for="satker">Satuan Kerja</label>
                             <input type="text" name="satker" class="form-control" id="satker" value="<?= $data['satker']; ?>">
                         </div>
                         <div class="form-group">
@@ -43,8 +39,9 @@
                             <label for="counter">Counter</label>
                             <input type="text" name="counter" class="form-control" id="counter" value="<?= $data['counter']; ?>">
                         </div>
-                        <a href="<?= base_url(); ?>menu/data"class="btn btn-success btn-sm float-center">Kembali</a>      
-                        
+                        <a href="<?= base_url(); ?>menu/data" class="btn btn-success btn-sm float-center">Simpan</a>
+
+
                     </form>
                 </div>
             </div>

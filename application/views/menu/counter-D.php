@@ -52,7 +52,7 @@
                     <div class="card bg-primary text-white shadow mb-2">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h3 class="m-0 font-weight-bold text-primary" style="text-align:center">COUNTER A</h3>
+                            <h3 class="m-0 font-weight-bold text-primary" style="text-align:center">COUNTER D</h3>
                             <div class="dropdown no-arrow">
                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
