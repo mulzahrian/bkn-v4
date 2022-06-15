@@ -52,12 +52,14 @@
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="chart-area">
-                                <h1 class="h3 mb-4 text-white-800" style="text-align:center">Nama Antrian</h1>
+                                <h1 class="h3 mb-4 text-white-800" style="text-align:center">Antrean</h1>
                                 <?php foreach ($counter as $sm) : ?>
                                     <h1 class="h1 mb-4 text-white-800" style="text-align:center"><?= $sm['nama']; ?></h1>
                                     <!-- layana -->
+                                <?php endforeach; ?>
                                     <h1 class="h3 mb-4 text-white-800" style="text-align:center">Layanan</h1>
-                                    <h1 class="h1 mb-4 text-white-800" style="text-align:center"><?= $sm['layanan']; ?></h1>
+                                    <?php foreach ($counter as $ly) : ?>
+                                    <h1 class="h1 mb-4 text-white-800" style="text-align:center"><?= $ly['layanan']; ?></h1>
                                     <?php endforeach; ?>
                                 
                             </div>
