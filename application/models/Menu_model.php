@@ -17,6 +17,11 @@ class Menu_model extends CI_Model
         return $this->db->get_where('layanan', ['id' => $id])->row_array();
     }
 
+    public function getDisplayById($id)
+    {
+        return $this->db->get_where('display', ['id' => $id])->row_array();
+    }
+
     public function ubahDataLayanan($id)
     {
         $data = [
@@ -26,6 +31,15 @@ class Menu_model extends CI_Model
 
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('layanan', $data);
+    }
+
+    public function ubahDataDisplay($id)
+    {
+        $data = [
+            "quotes" => $this->input->post('quotes', true)        ];
+
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('display', $data);
     }
 
     public function update_1($id)
@@ -48,9 +62,33 @@ class Menu_model extends CI_Model
         return $this->db->query($sql);
     }
 
+    public function get_display()
+    {
+        $sql = "SELECT * FROM display ORDER BY id DESC LIMIT 1";
+        return $this->db->query($sql);
+    }
+
     public function get_counter_a()
     {
         $sql = "SELECT * FROM layanan where counter = 'A' and status = 1 ORDER BY id DESC LIMIT 1";
+        return $this->db->query($sql);
+    }
+
+    public function get_counter_b()
+    {
+        $sql = "SELECT * FROM layanan where counter = 'B' and status = 1 ORDER BY id DESC LIMIT 1";
+        return $this->db->query($sql);
+    }
+
+    public function get_counter_c()
+    {
+        $sql = "SELECT * FROM layanan where counter = 'C' and status = 1 ORDER BY id DESC LIMIT 1";
+        return $this->db->query($sql);
+    }
+
+    public function get_counter_d()
+    {
+        $sql = "SELECT * FROM layanan where counter = 'C' and status = 1 ORDER BY id DESC LIMIT 1";
         return $this->db->query($sql);
     }
 

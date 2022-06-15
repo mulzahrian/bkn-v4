@@ -16,7 +16,7 @@
 
             <?= $this->session->flashdata('message'); ?>
 
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubMenuModal">Edit Display</a>
+            <!-- <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubMenuModal">Edit Display</a> -->
 
             <table class="table table-hover">
                 <thead>
@@ -34,9 +34,8 @@
                             <th scope="row"><?= $i; ?></th>
                             <td><?= $sm['quotes']; ?></td>
                             <td><?= $sm['video']; ?></td>
-
                             <td>
-                                <a href="" class="badge badge-success">Edit</a>
+                            <a href="<?= base_url(); ?>menu/ubah_display/<?= $sm['id']; ?>" class="btn btn-warning btn-sm float-center"><i class=" fas fa-pen"></i></a>
                             </td>
                         </tr>
                         <?php $i++; ?>
