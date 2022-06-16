@@ -316,14 +316,14 @@ class Menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Menu_model', 'counter');
 
-        $data['counter'] = $this->Menu_model->get_counter_a()->result_array();
+        $data['counter'] = $this->Menu_model->get_counter_b()->result_array();
         //$data['subMenu'] = $this->menu->getSubMenu();
         //$data['data'] = $this->db->get('layanan')->result_array();
 
         $this->load->view('templates/header', $data);
         //$this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('menu/counter-A', $data);
+        $this->load->view('menu/counter-B', $data);
         $this->load->view('templates/footer');
     }
     public function counter_c()
@@ -332,14 +332,14 @@ class Menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Menu_model', 'counter');
 
-        $data['counter'] = $this->Menu_model->get_counter_a()->result_array();
+        $data['counter'] = $this->Menu_model->get_counter_c()->result_array();
         //$data['subMenu'] = $this->menu->getSubMenu();
         //$data['data'] = $this->db->get('layanan')->result_array();
 
         $this->load->view('templates/header', $data);
         //$this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('menu/counter-A', $data);
+        $this->load->view('menu/counter-C', $data);
         $this->load->view('templates/footer');
     }
     public function counter_d()
@@ -348,14 +348,14 @@ class Menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Menu_model', 'counter');
 
-        $data['counter'] = $this->Menu_model->get_counter_a()->result_array();
+        $data['counter'] = $this->Menu_model->get_counter_d()->result_array();
         //$data['subMenu'] = $this->menu->getSubMenu();
         //$data['data'] = $this->db->get('layanan')->result_array();
 
         $this->load->view('templates/header', $data);
         //$this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('menu/counter-A', $data);
+        $this->load->view('menu/counter-D', $data);
         $this->load->view('templates/footer');
     }
 }
