@@ -134,6 +134,9 @@ class Menu extends CI_Controller
 
         //$data['subMenu'] = $this->menu->getSubMenu();
         $data['data'] = $this->db->get('layanan')->result_array();
+        if( $this->input->post('keyword') ) {
+            $data['data'] = $this->Menu_model->cariData();
+        }
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

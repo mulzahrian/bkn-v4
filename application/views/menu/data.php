@@ -20,6 +20,19 @@
 
             <!-- <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubMenuModal">Add New Layanan</a> -->
 
+            <div class="row mt-3">
+        <div class="col-md-3">
+            <form action="<?= base_url('menu/data'); ?>" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cari data .." name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
             <table class="table table-hover">
                 <thead>
                     <tr>

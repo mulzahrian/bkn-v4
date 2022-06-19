@@ -22,6 +22,21 @@ class Menu_model extends CI_Model
     return $this->db->get('layanan');
     }
 
+    public function cariData()
+    {
+        $keyword = $this->input->post('keyword', true);
+        $this->db->like('nip', $keyword);
+        $this->db->or_like('nama', $keyword);
+        $this->db->or_like('slug', $keyword);
+        $this->db->or_like('satker', $keyword);
+        $this->db->or_like('instansi', $keyword);
+        $this->db->or_like('kepentingan', $keyword);
+        $this->db->or_like('nohp', $keyword);
+        $this->db->or_like('layanan', $keyword);
+        $this->db->or_like('counter', $keyword);
+        return $this->db->get('layanan')->result_array();
+    }
+
     public function getDisplayById($id)
     {
         return $this->db->get_where('display', ['id' => $id])->row_array();
