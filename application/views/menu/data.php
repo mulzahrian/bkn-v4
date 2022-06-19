@@ -15,6 +15,8 @@
             <?php endif; ?>
 
             <?= $this->session->flashdata('message'); ?>
+            <a href="<?= base_url(); ?>menu/excel" class="btn btn-success"><i class="fa fa-clipboard"></i>  Excel File</a>
+            <a href="<?= base_url(); ?>menu/pdf" class="btn btn-danger"><i class="fa fa-clipboard"></i>  PDF File</a>
 
             <!-- <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubMenuModal">Add New Layanan</a> -->
 

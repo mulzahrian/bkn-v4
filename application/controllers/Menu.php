@@ -7,6 +7,7 @@ class Menu extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Menu_model');
+        $this->load->library('dompdf_gen');
         is_logged_in();
     }
 
@@ -186,6 +187,81 @@ class Menu extends CI_Controller
         redirect('menu/data');
     }
 
+    //excel
+    public function excel()
+    {
+        $data['data'] = $this->Menu_model->tampil_data('layanan')->result();
+
+	    
+        require(APPPATH. 'PHPExcel-1.8/Classes/PHPExcel.php');
+        require(APPPATH. 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
+
+
+        $object = new PHPExcel();
+
+        $object->getProperties()->setCreator("Zahra");
+        $object->getProperties()->setLastModifiedBy("Zahra");
+        $object->getProperties()->setTitle("Daftar Data Layanan");
+
+        $object->setActiveSheetIndex(0);
+
+        $object->getActiveSheet()->setCellValue('A1','NO');
+        $object->getActiveSheet()->setCellValue('B1','Nip');
+        $object->getActiveSheet()->setCellValue('C1','Nama');
+        $object->getActiveSheet()->setCellValue('D1','Slug');
+        $object->getActiveSheet()->setCellValue('E1','Satker');
+        $object->getActiveSheet()->setCellValue('F1','Instansi');
+        $object->getActiveSheet()->setCellValue('G1','Kepentingan');
+        $object->getActiveSheet()->setCellValue('H1','No Hp');
+        $object->getActiveSheet()->setCellValue('I1','Layanan');
+        $object->getActiveSheet()->setCellValue('J1','Counter');
+
+        $baris = 2;
+        $no = 1;
+
+        foreach ($data['data'] as $mds) {
+            $object->getActiveSheet()->setCellValue('A'.$baris, $no++);
+            $object->getActiveSheet()->setCellValue('B'.$baris, $mds->nip);
+            $object->getActiveSheet()->setCellValue('C'.$baris, $mds->nama);
+            $object->getActiveSheet()->setCellValue('D'.$baris, $mds->slug);
+            $object->getActiveSheet()->setCellValue('E'.$baris, $mds->satker);
+            $object->getActiveSheet()->setCellValue('F'.$baris, $mds->instansi);
+            $object->getActiveSheet()->setCellValue('G'.$baris, $mds->kepentingan);
+            $object->getActiveSheet()->setCellValue('H'.$baris, $mds->nohp);
+            $object->getActiveSheet()->setCellValue('I'.$baris, $mds->layanan);
+            $object->getActiveSheet()->setCellValue('J'.$baris, $mds->counter);
+            $baris++;
+        }
+    $filename="Data".'.xlsx';
+    $object->getActiveSheet()->setTitle("Data");
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="'.$filename.'"');
+    header('Cache-Control: max-age=0');
+
+    $writer=PHPExcel_IOFactory::createwriter($object, 'Excel2007');
+    $writer->save('php://output');
+    exit;
+    }
+
+    //pdf
+    public function pdf()
+    {
+        $this->load->library('dompdf_gen');
+
+        $data['data'] = $this->db->get('layanan')->result_array();
+        
+        $this->load->view('menu/pdf', $data);
+
+        $paper_size = 'A5';
+        $orientation = 'portrait';
+        $html = $this->output->get_output();
+
+        $this->dompdf->set_paper($paper_size, $orientation);
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan.pdf", array('attachment' =>0));   
+}
+
 
     //display
 
@@ -195,7 +271,6 @@ class Menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Menu_model', 'display');
 
-        //$data['subMenu'] = $this->menu->getSubMenu();
         $data['display'] = $this->db->get('display')->result_array();
 
         $this->form_validation->set_rules('quotes', 'quotes', 'required');
@@ -316,6 +391,7 @@ class Menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Menu_model', 'counter');
 
+        $data['display'] = $this->Menu_model->get_display()->result_array();
         $data['counter'] = $this->Menu_model->get_counter_b()->result_array();
         //$data['subMenu'] = $this->menu->getSubMenu();
         //$data['data'] = $this->db->get('layanan')->result_array();
@@ -332,6 +408,7 @@ class Menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Menu_model', 'counter');
 
+        $data['display'] = $this->Menu_model->get_display()->result_array();
         $data['counter'] = $this->Menu_model->get_counter_c()->result_array();
         //$data['subMenu'] = $this->menu->getSubMenu();
         //$data['data'] = $this->db->get('layanan')->result_array();
@@ -348,6 +425,7 @@ class Menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Menu_model', 'counter');
 
+        $data['display'] = $this->Menu_model->get_display()->result_array();
         $data['counter'] = $this->Menu_model->get_counter_d()->result_array();
         //$data['subMenu'] = $this->menu->getSubMenu();
         //$data['data'] = $this->db->get('layanan')->result_array();

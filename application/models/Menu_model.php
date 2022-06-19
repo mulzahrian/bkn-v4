@@ -17,6 +17,11 @@ class Menu_model extends CI_Model
         return $this->db->get_where('layanan', ['id' => $id])->row_array();
     }
 
+    public function tampil_data()
+    {
+    return $this->db->get('layanan');
+    }
+
     public function getDisplayById($id)
     {
         return $this->db->get_where('display', ['id' => $id])->row_array();
